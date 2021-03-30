@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('dashboard', [KaryawanController::class, 'dashboard']);
+Route::get('/dashboard', [KaryawanController::class, 'dashboard']);
+Route::get('/pegawai', [KaryawanController::class, 'search']);

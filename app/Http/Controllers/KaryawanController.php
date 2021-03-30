@@ -83,6 +83,40 @@ class KaryawanController extends Controller
 
         return view('dashboard', compact(  'karyawan_male','karyawan_female', 'jabatan'));
     }
+
+    public function search(Request $request) {
+        $query = $request->search;
+
+        if ($query) {
+            $request = Request::create('/api/karyawan-json', 'GET');
+            $response = app()->handle($request);
+
+            $json = $response->getContent();
+
+            $json = json_decode($json, true);
+
+            $result = array_filter($json["EMP"], function ($item) use ($query) {
+                foreach($item["FAMILY"] as $family) {
+                    if (stripos($item["NAMA"], $query) !== false) {
+                        return true;
+                    }
+                    else if (stripos($item["NO_BADGE"], $query) !== false) {
+                        return true;
+                    }
+                    else if (stripos($family["NAMA"], $query) !== false) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            $results = json_encode($result);
+
+            return view('search', ['results'=>json_decode($results, true)]);
+        }
+
+        return view('search');
+    }
 }
 
 
