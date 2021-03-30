@@ -7,6 +7,29 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## ROUTES
+#### Routes API JSON Karyawan
+```
+GET
+'http://localhost:8000/api/karyawan-json'
+```
+<img src="./screenshot/API Response.png" alt="API JSON">
+
+
+#### Routes Dashboard Data Visualization
+```
+GET
+'http://localhost:8000/dashboard'
+```
+<img src="./screenshot/Analytical.png">
+
+#### Routes Pencarian Pegawai
+```
+GET
+'http://localhost:8000/pegawai'
+```
+<img src="./screenshot/Search.png">
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
