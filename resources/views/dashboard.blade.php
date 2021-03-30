@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div>
-    <h5>Dashborad Analytic</h5>
-    <div class="container p-5">
-        <div id="piechart" style="width: 900px; height: 500px; border: #1a202c"></div>
+<h3 style="text-align: center; margin: 70px;">Dashborad Analytic</h3>
+<div class="row">
+    <div class="col-sm-6" style="">
+        <div id="piechart" style="width: 700px; height: 500px; border: #1a202c"></div>
     </div>
-    <div class="container p-5">
-        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <div class="col-sm-6" style="">
+        <div id="chart_div" style="width: 700px; height: 500px;"></div>
     </div>
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -54,15 +54,5 @@
     }
 
 </script>
-{{--<script type="text/javascript">--}}
-{{--    google.charts.load('current', {'packages':['corechart']});--}}
-{{--    google.charts.setOnLoadCallback(drawChart);--}}
-
-{{--    function drawChart() {--}}
-
-{{--        --}}
-{{--    }--}}
-
-{{--</script>--}}
 </body>
 </html>
