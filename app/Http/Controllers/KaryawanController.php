@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 class KaryawanController extends Controller
 {
@@ -51,6 +53,35 @@ class KaryawanController extends Controller
             }
         }
         return $data;
+    }
+
+    public function dashboard() {
+        $request = Request::create('/api/karyawan-json', 'GET');
+        $response = app()->handle($request);
+
+        $json = $response->getContent();
+
+        $json = json_decode($json, true);
+
+        $karyawan_male = count(array_filter($json["EMP"],function($a) {return $a["JK"]=="Male";}));
+        $karyawan_female = count(array_filter($json["EMP"],function($a) {return $a["JK"]=="Female";}));
+
+        $jabatan = array_map(function ($a) {return $a['DETAIL_JABATAN']["DESC"];}, $json["EMP"]);
+        $jabatan = array_count_values($jabatan);
+
+
+        $collection = collect($jabatan);
+        $jabatan = $collection->chunk(1);
+        $jabatan = $jabatan->toArray();
+        //$jabatan = array_chunk($jabatan, 1, true);
+        array_unshift($jabatan, ['Jabatan', 'Jumlah']);
+
+        $jabatan = json_encode($jabatan);
+        $jabatan = str_replace('{','[', $jabatan);
+        $jabatan = str_replace('}',']', $jabatan);
+        $jabatan = str_replace(':',',', $jabatan);
+
+        return view('dashboard', compact(  'karyawan_male','karyawan_female', 'jabatan'));
     }
 }
 
